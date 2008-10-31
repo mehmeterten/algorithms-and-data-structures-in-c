@@ -12,7 +12,7 @@ int main(int argc, char **argv)
   unsigned int inputArray[ARRAYSIZE];
   unsigned int inputArraySize, n = 0;
   inputArraySize = userInput(inputArray);
-  n = inputArraySize;
+  n = inputArraySize - 1;
   //In Selection Sort we pick up the maximum value in
   //the unsorted part of the array and put it at it
   //rightful place.
@@ -36,8 +36,8 @@ int main(int argc, char **argv)
   }
   
   // Print the output
-  for(unsigned int i = 0; i <= inputArraySize; i++)  {
-    std::cout << inputArray[i] << endl;
+  for(unsigned int i = 0; i < inputArraySize; i++)  {
+    std::cout << inputArray[i] << '\t';
   }
   return 0;
 }
@@ -48,14 +48,12 @@ unsigned int userInput(unsigned int *inputArray)
   cout << "Enter list of number and have them sorted."
        << "(Enter ZERO to terminate input)" << endl;
   /* Take input from user */
-  for(;;)  {
+  for(inputArraySize = 0; inputArraySize < ARRAYSIZE; inputArraySize++)  {
     cout << "Enter a number :(" << inputArraySize + 1 << ") :" << endl;
     cin >> inputArray[inputArraySize];
-    if((inputArray[inputArraySize] == 0) || 
-       (inputArraySize == ARRAYSIZE - 1))  {
+    if(inputArray[inputArraySize] == 0)  {
       break;
     }
-    ++inputArraySize;
   }
   return inputArraySize;
 }
