@@ -1,4 +1,5 @@
 /* Algorithm::QuickSort, recursive implementation */
+/* Author: Ankit Solanki http://simulacra.in */
 
 #include <iostream>
 #include <cstdlib>
