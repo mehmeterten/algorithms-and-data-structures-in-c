@@ -1,9 +1,10 @@
 /* Algorithm::QuickSort, recursive implementation */
-/* Author: Ankit Solanki http://simulacra.in */
+/* Author: Ankit Solanki ( http://simulacra.in ) */
 
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#define ARRAYSIZE 10
 
 using namespace std;
 
@@ -12,28 +13,38 @@ void quickSort(unsigned int*, unsigned int, unsigned int);
 int verifySort(unsigned int*, unsigned int);
 unsigned int partition(unsigned int*, unsigned int, unsigned int, unsigned int);
 void swap(unsigned int*, unsigned int, unsigned int);
+void printArray(unsigned int*, unsigned int);
 
 unsigned int swaps;
 unsigned int compares;
 
 int main(int argc, char **argv)
 {
-  unsigned int inputArray[100];
-  randomInput(inputArray, 100);
+  unsigned int inputArray[ARRAYSIZE];
+  cout << "Creating a random array with " << ARRAYSIZE << " random elements." 
+       << endl;
+  randomInput(inputArray, ARRAYSIZE);
 
-  cout << "Created a random array with " << 100 << " random elements.\n";
+  cout << "Random array elements." << endl;
+  printArray(inputArray, ARRAYSIZE);
 
-  cout << "Performing quicksort.\n";
-  quickSort(inputArray, 0, 100);
+  cout << "Performing quicksort." << endl;
+  quickSort(inputArray, 0, ARRAYSIZE);
 
   cout << "Verifying that the array is sorted: ";
-  if (verifySort(inputArray, 100)) {
-    cout << " verified.\n";
+  if (verifySort(inputArray, ARRAYSIZE)) {
+    cout << " verified." << endl;
   } else {
-    cout << " ERROR! The sort was not properly performed.\n";
+    cout << " ERROR! The sort was not properly performed." << endl;
   }
    
-  cout << "Number of swaps: " << swaps << ", Number of comparisions: " << compares << "\n";
+  cout << "Sorted array elements." << endl;
+  printArray(inputArray, ARRAYSIZE);
+
+  cout << "Number of swaps: " << swaps << ", Number of comparisions: " 
+       << compares << endl;
+
+  return 0;
 }
 
 void randomInput(unsigned int* array, unsigned int size) {
@@ -41,6 +52,7 @@ void randomInput(unsigned int* array, unsigned int size) {
   for(unsigned int i = 0; i < size; i++) {
     array[i] = rand() % 10000;
   }
+  return;
 }
 
 void quickSort(unsigned int* array, unsigned int left, unsigned int right) {
@@ -60,7 +72,7 @@ void quickSort(unsigned int* array, unsigned int left, unsigned int right) {
          the left of it.
       3. All elements with values greatar than the pivot elemnet are 
          put to the right of it.
-  */     
+  */
   unsigned int newPivot = partition(array, left, right, pivot);
 
   // call quicksort recursively on each side
@@ -105,4 +117,14 @@ int verifySort(unsigned int* array, unsigned int size) {
   }
 
   return sorted;
+}
+
+void printArray(unsigned int* array, unsigned int size)
+{
+  for (unsigned int i = 0; i < size; i++) {
+    cout << array[i] << '\t';
+  }
+
+  cout << endl;
+  return;
 }
